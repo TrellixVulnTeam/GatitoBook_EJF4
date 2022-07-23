@@ -1,0 +1,79 @@
+<h4 class="text-center mt-4">Cadastro de novo usuário</h4>
+
+<form class="mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
+  <div class="form-group">
+    <input
+      placeholder="E-mail"
+      class="form-control"
+      formControlName="email"
+      required
+    />
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.get('email')?.touched && novoUsuarioForm.get('email')?.errors?.['required']"
+      >Campo obrigatório</small
+    >
+    <small
+      *ngIf="novoUsuarioForm.get('email')?.errors?.['email']"
+      class="text-danger form-text text-muted"
+      >Formato do e-mail incorreto.</small
+    >
+  </div>
+  <div class="form-group">
+    <input
+      placeholder="Nome completo"
+      class="form-control"
+      formControlName="fullName"
+    />
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.get('fullName')?.touched && novoUsuarioForm.get('fullName')?.errors?.['required']"
+      >Campo obrigatório</small
+    >
+  </div>
+  <div class="form-group">
+    <input
+      placeholder="Nome de usuário"
+      class="form-control"
+      formControlName="userName"
+    />
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']"
+      >Usuário já existe.</small
+    >
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.get('userName')?.touched && novoUsuarioForm.get('userName')?.errors?.['required']"
+      >Campo obrigatório</small
+    >
+  </div>
+  <div class="form-group">
+    <input
+      placeholder="Senha"
+      type="password"
+      class="form-control"
+      formControlName="password"
+    />
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.get('password')?.touched && novoUsuarioForm.get('password')?.errors?.['required']"
+      >Campo obrigatório</small
+    >
+    <small
+      class="text-danger form-text"
+      *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']"
+      >Usuário e senha não podem ser iguais.</small
+    >
+  </div>
+
+  <button
+    class="btn btn-primary btn-block"
+    [disabled]="novoUsuarioForm.invalid"
+  >
+    Confirmar
+  </button>
+  <p class="mt-2 font-italic">
+    Já possui cadastro?<a routerLink=""> Faça o login.</a>
+  </p>
+</form>
