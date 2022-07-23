@@ -4,7 +4,7 @@ import { Cadastro } from './cadastro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const API = environment.apiURL;
+const API = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
